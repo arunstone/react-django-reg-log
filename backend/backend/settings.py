@@ -145,16 +145,24 @@ from dotenv import load_dotenv
 # Load environment variables from .env
 load_dotenv(dotenv_path=os.path.join(BASE_DIR, '.env'))
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DATABASE_NAME'),
+#         'USER': os.getenv('DATABASE_USER'),
+#         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+#         'HOST': os.getenv('DATABASE_HOST', 'dockerhost'),  # Default to localhost
+#         'PORT': os.getenv('DATABASE_PORT', '5432'),  # Default PostgreSQL port
+#     }
+# }
+
+import dj_database_url
+import os
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST', 'dockerhost'),  # Default to localhost
-        'PORT': os.getenv('DATABASE_PORT', '5432'),  # Default PostgreSQL port
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
+
 # Load secret key from .env
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
 
