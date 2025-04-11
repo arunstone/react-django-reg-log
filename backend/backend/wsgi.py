@@ -14,3 +14,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
 application = get_wsgi_application()
+# Add this line to serve static files in production
+# This is only necessary if you're using WhiteNoise to serve static files
+from whitenoise import WhiteNoise
+application = WhiteNoise(application)
