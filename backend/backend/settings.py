@@ -173,7 +173,8 @@ DATABASES = {
 }
 import os
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '*').split(',')]
+
 
 # Load secret key from .env
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
