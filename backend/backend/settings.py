@@ -139,9 +139,12 @@ AUTH_USER_MODEL = 'users.CustomUser'
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-
+    "https://react-django-reg-log.vercel.app",
 ]
+
+# Allow credentials (cookies, sessions, etc.) if you're using them
+CORS_ALLOW_CREDENTIALS = True
+
 import os
 from dotenv import load_dotenv
 
