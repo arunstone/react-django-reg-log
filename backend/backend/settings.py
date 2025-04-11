@@ -173,8 +173,6 @@ DATABASES = {
 }
 import os
 
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '*').split(',')]
-
 
 # Load secret key from .env
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
@@ -186,3 +184,14 @@ from decouple import config
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
+
+import environ
+
+# Set the project base directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
