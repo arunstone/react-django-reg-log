@@ -136,9 +136,14 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
     "https://react-django-reg-log.vercel.app",
+    "https://react-django-reg-log-stones-projects-3986382c.vercel.app",
+    "https://react-django-reg-log-git-main-stones-projects-3986382c.vercel.app",
 ]
+
 
 # Allow credentials (cookies, sessions, etc.) if you're using them
 CORS_ALLOW_CREDENTIALS = True
@@ -203,4 +208,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'react-django-reg-log.onrender.com']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'react-django-reg-log.onrender.com',
+    'react-django-reg-log-stones-projects-3986382c.vercel.app',
+    'react-django-reg-log-git-main-stones-projects-3986382c.vercel.app',
+]
