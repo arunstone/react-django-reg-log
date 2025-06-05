@@ -159,6 +159,18 @@ load_dotenv(dotenv_path=os.path.join(BASE_DIR, '.env'))
 #         'PORT': os.getenv('DATABASE_PORT', '5432'),  # Default PostgreSQL port
 #     }
 # }
+import socket
+
+# Force IPv4 only - fixes Render free-tier + Supabase connectivity
+def force_ipv4():
+    original_getaddrinfo = socket.getaddrinfo
+
+    def ipv4_getaddrinfo(*args, **kwargs):
+        return [info for info in original_getaddrinfo(*args, **kwargs) if info[0] == socket.AF_INET]
+
+    socket.getaddrinfo = ipv4_getaddrinfo
+
+force_ipv4()
 
 import dj_database_url
 import os
